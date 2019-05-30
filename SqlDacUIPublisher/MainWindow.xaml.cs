@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -70,6 +71,9 @@ namespace SqlDacUIPublisher
                 ResultLabel.Content = "Result: ";
                 ResultTextBox.Text = string.Empty;
 
+                if (!File.Exists(DacpacTextBox.Text)) throw new ArgumentException("The dacpac file does not exists");
+                TestConnection(ConnectionStringTextBox.Text);
+
                 var dac = DacPackage.Load(DacpacTextBox.Text);
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(ConnectionStringTextBox.Text);
                 var dacService = new DacServices(ConnectionStringTextBox.Text);
@@ -77,11 +81,11 @@ namespace SqlDacUIPublisher
                 var result = await Task.Run<PublishResult>(() => dacService.Publish(dac, builder.InitialCatalog, new PublishOptions()));
                 ResultTextBox.Text = result.DatabaseScript;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ResultTextBox.Text = ex.Message;
+                ResultTextBox.Text = ex.ToFormattedString();
                 ResultLabel.Content = "Error: ";
-            }   
+            }
             finally
             {
                 DacpacTextBox.IsEnabled = true;
@@ -89,7 +93,25 @@ namespace SqlDacUIPublisher
                 PublishButton.IsEnabled = true;
                 PublishButton.Content = "Publish";
             }
-            
+        }
+
+        private void TestConnection(string connectionString)
+        {
+            string provider = "System.Data.SqlClient";
+            DbProviderFactory factory = DbProviderFactories.GetFactory(provider);
+            using (DbConnection conn = factory.CreateConnection())
+            {
+                try
+                {
+                    conn.ConnectionString = connectionString;
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Connection is not working", ex);
+                }
+            }
         }
     }
 }
+
