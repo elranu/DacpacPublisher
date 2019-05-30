@@ -1,0 +1,26 @@
+﻿<Window x:Class="SqlDacUIPublisher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SqlDacUIPublisher"
+        mc:Ignorable="d"
+        Title="Dacpac UI Publisher" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="215*"/>
+            <ColumnDefinition Width="423*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="ConnectionStringTextBox" HorizontalAlignment="Left" Height="23" Margin="100.972,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="588" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <Button x:Name="ConnectionStringButton" Content="..." HorizontalAlignment="Left" Margin="359.111,45,0,0" VerticalAlignment="Top" Width="36" Click="Button_Click_ConnectionString" Grid.Column="3"/>
+        <Label Content="Connection String:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="DacpacTextBox" HorizontalAlignment="Left" Height="24" Margin="100.972,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="588" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <Label Content="Dacpac file:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="108" Grid.ColumnSpan="2"/>
+        <Button x:Name="DacpacButton" Content="..." HorizontalAlignment="Left" Margin="359.111,102,0,0" VerticalAlignment="Top" Width="36" Click="DacpacButton_Click" Grid.Column="3"/>
+        <Button x:Name="PublishButton" Content="Publish" HorizontalAlignment="Left" Margin="204.222,149,0,0" VerticalAlignment="Top" Width="75" Click="PublishButton_Click" RenderTransformOrigin="0.546,-1.503" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label x:Name="ResultLabel" Content="Result:&#xD;&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="0.333,172,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ResultTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="203" Margin="0.333,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="741" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" Focusable="False" AllowDrop="False" IsTabStop="False"/>
+    </Grid>
+</Window>
