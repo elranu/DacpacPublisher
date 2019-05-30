@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("SqlDacUIPublisher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Mariano Vicario")]
 [assembly: AssemblyProduct("SqlDacUIPublisher")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright Mariano Vicario ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
